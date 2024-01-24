@@ -40,7 +40,7 @@ public class Controller {
     }
 
     @GetMapping("ventas")
-    public List<Producto> getVentas(){
+    public List<Venta> getVentas(){
         return  ventaRepository.findAll();
     }
 
@@ -62,7 +62,7 @@ public class Controller {
         return "Venta guardada";
     }
 
-    @PutMapping("modificar/{id}")
+    @PutMapping("modificarCliente/{id}")
     public String updateCliente(@PathVariable Long id, @RequestBody Cliente cliente){
         Cliente updateCliente = clienteRepository.findById(id).get();
         updateCliente.setNombre(cliente.getNombre());
@@ -89,7 +89,7 @@ public class Controller {
         return "Venta modificada";
     }
 
-    @DeleteMapping("baja/{id}")
+    @DeleteMapping("bajaCliente/{id}")
     public String deleteCliente(@PathVariable Long id){
 
         Cliente deleteCliente = clienteRepository.findById(id).get();
