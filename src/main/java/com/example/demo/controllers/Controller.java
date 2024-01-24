@@ -25,45 +25,45 @@ public class Controller {
 
 
     @GetMapping
-    public  String index(){
+    public String index() {
         return "Conectado";
     }
 
     @GetMapping("clientes")
-    public List<Cliente> getClientes(){
-        return  clienteRepository.findAll();
+    public List<Cliente> getClientes() {
+        return clienteRepository.findAll();
     }
 
     @GetMapping("productos")
-    public List<Producto> getProductos(){
-        return  productoRepository.findAll();
+    public List<Producto> getProductos() {
+        return productoRepository.findAll();
     }
 
     @GetMapping("ventas")
-    public List<Venta> getVentas(){
-        return  ventaRepository.findAll();
+    public List<Venta> getVentas() {
+        return ventaRepository.findAll();
     }
 
     @PostMapping("alta/cliente")
-    public String postCliente(@RequestBody Cliente cliente){
+    public String postCliente(@RequestBody Cliente cliente) {
         clienteRepository.save(cliente);
         return "Cliente guardado";
     }
 
     @PostMapping("alta/producto")
-    public String postProducto(@RequestBody Producto producto){
+    public String postProducto(@RequestBody Producto producto) {
         productoRepository.save(producto);
         return "Producto guardado";
     }
 
     @PostMapping("alta/venta")
-    public String postVenta(@RequestBody Venta venta){
+    public String postVenta(@RequestBody Venta venta) {
         ventaRepository.save(venta);
         return "Venta guardada";
     }
 
     @PutMapping("modificarCliente/{id}")
-    public String updateCliente(@PathVariable Long id, @RequestBody Cliente cliente){
+    public String updateCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
         Cliente updateCliente = clienteRepository.findById(id).get();
         updateCliente.setNombre(cliente.getNombre());
         updateCliente.setEmail(cliente.getEmail());
@@ -72,7 +72,7 @@ public class Controller {
     }
 
     @PutMapping("modificarProducto/{id}")
-    public String updateProducto(@PathVariable Long id, @RequestBody Producto producto){
+    public String updateProducto(@PathVariable Long id, @RequestBody Producto producto) {
         Producto updateProducto = productoRepository.findById(id).get();
         updateProducto.setNombre(producto.getNombre());
         updateProducto.setPrecio(producto.getPrecio());
@@ -81,7 +81,7 @@ public class Controller {
     }
 
     @PutMapping("modificarVenta/{id}")
-    public String updateVenta(@PathVariable Long id, @RequestBody Venta venta){
+    public String updateVenta(@PathVariable Long id, @RequestBody Venta venta) {
         Venta updateVenta = ventaRepository.findById(id).get();
         updateVenta.setCantidad(venta.getCantidad());
         updateVenta.setFecha(venta.getFecha());
@@ -90,7 +90,7 @@ public class Controller {
     }
 
     @DeleteMapping("bajaCliente/{id}")
-    public String deleteCliente(@PathVariable Long id){
+    public String deleteCliente(@PathVariable Long id) {
 
         Cliente deleteCliente = clienteRepository.findById(id).get();
         clienteRepository.delete(deleteCliente);
@@ -98,7 +98,7 @@ public class Controller {
     }
 
     @DeleteMapping("bajaProducto/{id}")
-    public String deleteProducto(@PathVariable Long id){
+    public String deleteProducto(@PathVariable Long id) {
 
         Producto deleteProducto = productoRepository.findById(id).get();
         productoRepository.delete(deleteProducto);
@@ -106,7 +106,7 @@ public class Controller {
     }
 
     @DeleteMapping("bajaVenta/{id}")
-    public String deleteVenta(@PathVariable Long id){
+    public String deleteVenta(@PathVariable Long id) {
 
         Venta deleteVenta = ventaRepository.findById(id).get();
         ventaRepository.delete(deleteVenta);
