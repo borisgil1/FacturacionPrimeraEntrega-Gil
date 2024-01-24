@@ -15,13 +15,13 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    private ClienteRepository repo;
+    private ClienteRepository clienteRepository;
 
     @Autowired
-    private ProductoRepository repo;
+    private ProductoRepository productoRepository;
 
     @Autowired
-    private VentaRepository repo;
+    private VentaRepository ventaRepository;
 
 
     @GetMapping
@@ -31,80 +31,85 @@ public class Controller {
 
     @GetMapping("clientes")
     public List<Cliente> getClientes(){
-        return  repo.findAll();
+        return  clienteRepository.findAll();
     }
 
     @GetMapping("productos")
     public List<Producto> getProducto(){
-        return  repo.findAll();
+        return  productoRepository.findAll();
+    }
+
+    @GetMapping("ventas")
+    public List<Producto> getVenta(){
+        return  ventaRepository.findAll();
     }
 
     @PostMapping("alta")
     public String post(@RequestBody Cliente cliente){
-        repo.save(cliente);
-        return "Guardado";
+        clienteRepository.save(cliente);
+        return "Cliente guardado";
     }
 
     @PostMapping("alta/producto")
     public String post(@RequestBody Producto producto){
-        repo.save(producto);
+        productoRepository.save(producto);
         return "Producto guardado";
     }
 
     @PostMapping("alta/venta")
     public String post(@RequestBody Venta venta){
-        repo.save(venta);
+        ventaRepository.save(venta);
         return "Venta guardada";
     }
 
     @PutMapping("modificar/{id}")
     public String update(@PathVariable Long id, @RequestBody Cliente cliente){
-        Cliente updateCliente = repo.findById(id).get();
+        Cliente updateCliente = clienteRepository.findById(id).get();
         updateCliente.setNombre(cliente.getNombre());
         updateCliente.setEmail(cliente.getEmail());
-        repo.save(updateCliente);
+        clienteRepository.save(updateCliente);
         return "Cliente modificado";
     }
 
     @PutMapping("modificarProducto/{id}")
     public String update(@PathVariable Long id, @RequestBody Producto producto){
-        Producto updateProducto = repo.findById(id).get();
+        Producto updateProducto = productoRepository.findById(id).get();
         updateProducto.setNombre(producto.getNombre());
         updateProducto.setPrecio(producto.getPrecio());
-        repo.save(updateProducto);
+        productoRepository.save(updateProducto);
         return "Producto modificado";
     }
 
     @PutMapping("modificarVenta/{id}")
     public String update(@PathVariable Long id, @RequestBody Venta venta){
-        Venta updateVenta = repo.findById(id).get();
+        Venta updateVenta = ventaRepository.findById(id).get();
         updateVenta.setCantidad(venta.getCantidad());
         updateVenta.setFecha(venta.getFecha());
-        repo.save(updateVenta);
+        ventaRepository.save(updateVenta);
         return "Venta modificada";
     }
 
     @DeleteMapping("baja/{id}")
     public String delete(@PathVariable Long id){
 
-        Cliente deleteCliente = repo.findById(id).get();
-        repo.delete(deleteCliente);
+        Cliente deleteCliente = clienteRepository.findById(id).get();
+        clienteRepository.delete(deleteCliente);
         return "Cliente eliminado";
     }
 
     @DeleteMapping("bajaProducto/{id}")
     public String delete(@PathVariable Long id){
 
-        Producto deleteProducto = repo.findById(id).get();
-        repo.delete(deleteProducto);
+        Producto deleteProducto = productoRepository.findById(id).get();
+        productoRepository.delete(deleteProducto);
         return "Producto eliminado";
     }
 
     @DeleteMapping("bajaVenta/{id}")
     public String delete(@PathVariable Long id){
 
-        Venta deleteVenta = repo.findById(id).get();
-        repo.delete(deleteVenta);
+        Venta deleteVenta = ventaRepository.findById(id).get();
+        ventaRepository.delete(deleteVenta);
         return "Venta eliminada";
     }
 }

@@ -13,12 +13,12 @@ public class Producto {
     @Setter
     private Long id;
 
-    @Column(name = "nombre")
+    @Column
     @Getter
     @Setter
     private String nombre;
 
-    @Column(name="precio")
+    @Column
     @Getter
     @Setter
     private Integer precio;
