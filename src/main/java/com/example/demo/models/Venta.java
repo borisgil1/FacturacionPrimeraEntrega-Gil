@@ -18,10 +18,10 @@ public class Venta {
     @Column
     @Getter
     @Setter
-    private Integer cantidadVendida;
+    private Integer cantidad;
 
     @Column(name="correo")
     @Getter
     @Setter
-    private Date fechaVenta;
+    private Date fecha;
 }

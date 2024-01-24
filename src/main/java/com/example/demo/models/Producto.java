@@ -13,7 +13,7 @@ public class Producto {
     @Setter
     private Long id;
 
-    @Column(name = "nombreProducto")
+    @Column(name = "nombre")
     @Getter
     @Setter
     private String nombre;
